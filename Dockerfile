@@ -8,7 +8,7 @@ ENV SERVICE_ID mysql
 ENV MYSQL_MAJOR 5.7
 ENV MYSQL_VERSION 5.7.7-rc
 # 安装mysql
-RUN apt-get install -y perl  mysql-server="${MYSQL_VERSION}"* 
+RUN apt-get install -y perl  mysql-server="${MYSQL_VERSION}"* \
   && rm -rf /var/lib/apt/lists/* &&  rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql
 # 简单配置
 RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
