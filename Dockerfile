@@ -15,7 +15,7 @@ RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
 # 设置mysql数据卷映射
 VOLUME /var/lib/mysql
 # 复制启动脚本
-COPY docker-entrypoint.sh /entrypoint.sh
+COPY start.sh /start.sh
 # 暴露端口
 EXPOSE 3306
 
