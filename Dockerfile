@@ -25,6 +25,7 @@ RUN { \
 VOLUME /var/lib/mysql
 # 复制启动脚本
 COPY start.sh /start.sh
+RUN chmod +x *.sh
 # 暴露端口
 EXPOSE 3306
 
