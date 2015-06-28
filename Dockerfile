@@ -7,7 +7,7 @@ ENV USER_NAME admin
 ENV SERVICE_ID mysql
 ENV MYSQL_MAJOR 5.7
 ENV MYSQL_VERSION 5.7.7-rc
-EMV MYSQL_ROOT_PASSWORD testpass
+ENV MYSQL_ROOT_PASSWORD testpass
 
 # 安装mysql
 RUN groupadd -r mysql && useradd -r -g mysql mysql
