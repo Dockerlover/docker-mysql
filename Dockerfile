@@ -7,7 +7,10 @@ ENV USER_NAME admin
 ENV SERVICE_ID mysql
 ENV MYSQL_MAJOR 5.7
 ENV MYSQL_VERSION 5.7.7-rc
+EMV MYSQL_ROOT_PASSWORD testpass
+
 # 安装mysql
+RUN groupadd -r mysql && useradd -r -g mysql mysql
 RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5
 RUN echo "deb http://repo.mysql.com/apt/debian/ wheezy mysql-${MYSQL_MAJOR}-dmr" > /etc/apt/sources.list.d/mysql.list
 RUN { \
