@@ -2,6 +2,11 @@
 FROM docker-ubuntu
 # 维护人员
 MAINTAINER  liuhong1.happy@163.com
+# 添加环境变量
+ENV USER_NAME admin
+ENV SERVICE_ID mysql
+ENV MYSQL_MAJOR 5.7
+ENV MYSQL_VERSION 5.7.7-rc
 # 安装mysql
 RUN apt-get install -y perl --no-install-recommends && apt-get install -y mysql-server="${MYSQL_VERSION}"* 
   && rm -rf /var/lib/apt/lists/* &&  rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql
