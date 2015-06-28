@@ -22,7 +22,7 @@ EXPOSE 3306
 # 配置supervisord
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # 启动supervisord
-CMD ["/usr/bin/supervisord","/bin/bash"]
+CMD ["/usr/bin/supervisord"]
 
 
 
