@@ -15,4 +15,5 @@ Docker化mysql
 
 - 运行容器
 
-        docker run -d -it --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root docker-mysql
+        docker run -d -it --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root \
+        -v /var/data/mysql:/var/lib/mysql docker-mysql
