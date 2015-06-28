@@ -8,10 +8,16 @@ ENV SERVICE_ID mysql
 ENV MYSQL_MAJOR 5.7
 ENV MYSQL_VERSION 5.7.7-rc
 # 安装mysql
-RUN apt-get install -y perl  mysql-server='${MYSQL_VERSION}*' \
-  && rm -rf /var/lib/apt/lists/* &&  rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql
-# 简单配置
-RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
+RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5
+RUN echo "deb http://repo.mysql.com/apt/debian/ wheezy mysql-${MYSQL_MAJOR}-dmr" > /etc/apt/sources.list.d/mysql.list
+RUN { \
+		echo mysql-community-server mysql-community-server/data-dir select ''; \
+		echo mysql-community-server mysql-community-server/root-pass password ''; \
+		echo mysql-community-server mysql-community-server/re-root-pass password ''; \
+		echo mysql-community-server mysql-community-server/remove-test-db select false; \
+	} | debconf-set-selections \
+	&& apt-get update && apt-get install -y mysql-server="${MYSQL_VERSION}"* && rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql
 # 设置mysql数据卷映射
 VOLUME /var/lib/mysql
 # 复制启动脚本
